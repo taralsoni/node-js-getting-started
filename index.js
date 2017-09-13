@@ -1,18 +1,49 @@
-var express = require('express');
-var app = express();
+var express   =    require("express");
+var mysql     =    require('mysql');
+var parser    =    require('body-parser'); 
+var app       =    express();
+app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }));
 
-app.set('port', (process.env.PORT || 5000));
 
-app.use(express.static(__dirname + '/public'));
+//var pool      =    mysql.createPool({
+//    connectionLimit : 100, //important
+//    host     : 'localhost',
+//    user     : 'root',
+//    password : '',
+//    database : 'APIAI',
+//    debug    : "false" 
+//});
 
-// views is directory for all template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
 
-app.get('/', function(request, response) {
-  response.render('pages/index');
+function handle_database(req,res) {
+    res.json({"code" : 200, "status" : "Success"});
+    return;
+//    pool.getConnection(function(err,connection){
+//        if (err) {
+//          res.json({"code" : 100, "status" : "Error in connection database"});
+//          return;
+//        }   
+//        console.log('connected as id ' + connection.threadId);
+//        console.log("Request" + req.body.data.city);
+//        var query = "select * from transactions where city='" + req.body.data.city + "'"; 
+//        connection.query(query,function(err,rows){
+//            connection.release();
+//            if(!err) {
+//				res.json({"code" : 200, "data": rows});
+//				//res.json({"code" : 200, "status" : req.body.data.city});
+//			}           
+//        });
+//        connection.on('error', function(err) {      
+//              res.json({"code" : 100, "status" : "Error in connection database"});
+//              return;     
+//        });
+//  });
+}
+
+app.post("/getTransactions",function(req,res){
+        handle_database(req,res);
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+app.listen(process.env.PORT || 3000);
+console.log("Success");
