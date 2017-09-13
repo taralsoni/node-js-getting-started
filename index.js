@@ -1,6 +1,7 @@
 var express   =    require("express");
 var mysql     =    require('mysql');
 var parser    =    require('body-parser'); 
+var pg = require('pg');
 var app       =    express();
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
@@ -17,8 +18,20 @@ app.use(parser.urlencoded({ extended: true }));
 
 
 function handle_database(req,res) {
-    res.json({"code" : 200, "status" : "Success"});
-    return;
+//    res.json({"code" : 200, "status" : "Success"});
+//    return;
+  
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+        client.query('SELECT * FROM transactions', function(err, result) {
+        done();
+      if (err)
+          { console.error(err); response.send("Error " + err); }
+      else
+          { response.render('pages/getTransactions', {results: result.rows} ); }
+      });
+    });
+  
+  
 //    pool.getConnection(function(err,connection){
 //        if (err) {
 //          res.json({"code" : 100, "status" : "Error in connection database"});
