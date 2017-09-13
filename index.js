@@ -41,7 +41,7 @@ function handle_database(req,res) {
 //  });
 }
 
-app.post("/",function(req,res){
+app.post("/getTransactions",function(req,res){
         handle_database(req,res);
 });
 
