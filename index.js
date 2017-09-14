@@ -20,7 +20,7 @@ function handle_database(req,res) {
   connection.query('SELECT * from test_users', function(err, rows, fields) {
       if (err) throw err;
 
-      res.json({"code" : 200, "status" : "Success"});
+      res.json({"code" : 200, "status" : rows});
     });
   
 //    res.json({"code" : 200, "status" : "Success"});
