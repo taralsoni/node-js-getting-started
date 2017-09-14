@@ -7,51 +7,52 @@ app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
 
-//var pool      =    mysql.createPool({
-//    connectionLimit : 100, //important
-//    host     : 'localhost',
-//    user     : 'root',
-//    password : '',
-//    database : 'APIAI',
-//    debug    : "false" 
-//});
+var pool      =    mysql.createPool({
+    connectionLimit : 100, //important
+    host     : 'us-cdbr-iron-east-05.cleardb.net',
+    user     : 'bab6e201bd92f0',
+    password : '208371fe',
+    database : 'heroku_c25636dc46ee442',
+    debug    : "false" 
+});
 
 
 function handle_database(req,res) {
 //    res.json({"code" : 200, "status" : "Success"});
 //    return;
   
-    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-        client.query('SELECT * FROM transactions', function(err, result) {
-        done();
-      if (err)
-          { console.error(err); response.send("Error " + err); }
-      else
-          { response.render('pages/getTransactions', {results: result.rows} ); }
-      });
-    });
+//    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+//        client.query('SELECT * FROM transactions', function(err, result) {
+//        done();
+//      if (err)
+//          { console.error(err); response.send("Error " + err); }
+//      else
+//          { response.render('pages/getTransactions', {results: result.rows} ); }
+//      });
+//    });
   
   
-//    pool.getConnection(function(err,connection){
-//        if (err) {
-//          res.json({"code" : 100, "status" : "Error in connection database"});
-//          return;
-//        }   
-//        console.log('connected as id ' + connection.threadId);
-//        console.log("Request" + req.body.data.city);
-//        var query = "select * from transactions where city='" + req.body.data.city + "'"; 
-//        connection.query(query,function(err,rows){
-//            connection.release();
-//            if(!err) {
-//				res.json({"code" : 200, "data": rows});
-//				//res.json({"code" : 200, "status" : req.body.data.city});
-//			}           
-//        });
-//        connection.on('error', function(err) {      
-//              res.json({"code" : 100, "status" : "Error in connection database"});
-//              return;     
-//        });
-//  });
+    pool.getConnection(function(err,connection){
+        if (err) {
+          res.json({"code" : 100, "status" : "Error in connection database"});
+          return;
+        }   
+        console.log('connected as id ' + connection.threadId);
+        console.log("Request" + req.body.data.city);
+        var query = "select * test_users"; 
+      // var query = "select * from transactions where city='" + req.body.data.city + "'"; 
+        connection.query(query,function(err,rows){
+            connection.release();
+            if(!err) {
+				res.json({"code" : 200, "data": rows});
+				//res.json({"code" : 200, "status" : req.body.data.city});
+			}           
+        });
+        connection.on('error', function(err) {      
+              res.json({"code" : 100, "status" : "Error in connection database"});
+              return;     
+        });
+  });
 }
 
 app.post("/getTransactions",function(req,res){
