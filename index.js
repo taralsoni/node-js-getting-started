@@ -26,9 +26,9 @@ function handle_database(req,res) {
         } 
         var companies = "Following companies are in" + req.body.data.city + "::";
         rows.forEach(function(companyInfo) {
-          companies = companies + ", " + companyInfo.COMPANY;
+          companies = companies + "::" + companyInfo.COMPANY;
         });
-        res.json({"code" : 200, "status" : rows});
+        res.json({"code" : 200, "status" : companies});
     });
   
 //    res.json({"code" : 200, "status" : "Success"});
