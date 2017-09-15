@@ -17,7 +17,7 @@ var connection = mysql.createConnection({
 
 
 function handle_database(req,res) {
-    var query = "select * from where city='" + req.body.data.city + "'"; 
+    var query = "select * from transactions where city='" + req.body.data.city + "'"; 
   
     connection.query(query, function(err, rows, fields) {
         if (err) {
