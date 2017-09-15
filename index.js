@@ -28,7 +28,7 @@ function handle_database(req,res) {
         rows.forEach(function(companyInfo) {
           companies = companies + ", " + companyInfo.COMPANY;
         });
-        res.json({"code" : 200, "status" : companies});
+        res.json({"code" : 200, "status" : rows});
     });
   
 //    res.json({"code" : 200, "status" : "Success"});
