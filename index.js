@@ -24,10 +24,10 @@ function handle_database(req,res) {
             res.json({"code" : 100, "status" : "Error in connection database"});
             return;
         } 
-//        var companies = "Following companies are in" + req.body.data.city + "::";
-//        rows.forEach(function(companyInfo) {
-//          companies = companies + "::" + companyInfo.COMPANY;
-//        });
+        var companies = "Following companies are in" + req.body.data.city + "::";
+        rows.forEach(function(companyInfo) {
+          companies = companies + "::" + companyInfo.name;
+        });
         res.json({"code" : 200, "status" : rows});
     });
   
