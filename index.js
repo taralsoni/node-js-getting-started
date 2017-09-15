@@ -29,6 +29,7 @@ function handle_database(req,res) {
           companies = companies + "::" + companyInfo.COMPANY;
         });
         res.json({"code" : 200, "status" : companies});
+        //done
     });
   
 //    res.json({"code" : 200, "status" : "Success"});
