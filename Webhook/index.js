@@ -2,6 +2,7 @@
 const https = require('https');
 var request = require('request');
 //hi just understanding push pull
+//new comment line added to redeploy on heroku
 exports.transactionFn = (req, res) => {
   let date = '';
   let city = "";
@@ -51,9 +52,9 @@ function callTransactionApi (city, date, company) {
             console.log("inside response");
             var companies="";
             var output = response.body.status;
-            output.forEach(function(companyInfo) {
-                companies = (companies=="")? companyInfo.name:  companies + ", " + companyInfo.name;
-            });
+         //   output.forEach(function(companyInfo) {
+       //         companies = (companies=="")? companyInfo.name:  companies + ", " + companyInfo.name;
+     //       });
             resolve(companies);
           }
         });
