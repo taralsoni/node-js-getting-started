@@ -17,7 +17,7 @@ var connection = mysql.createConnection({
 
 
 function handle_database(req,res) {
-    var query = "select * from test_users";// where city='" + req.body.data.city + "'"; 
+    var query = "select * from transactions";// where city='" + req.body.data.city + "'"; 
   
     connection.query(query, function(err, rows, fields) {
         if (err) {
@@ -26,10 +26,9 @@ function handle_database(req,res) {
         } 
         var companies = "Following companies are in" + req.body.data.city + "::";
         rows.forEach(function(companyInfo) {
-          companies = companies + "::" + companyInfo.name;
+          companies = companies + "::" + companyInfo.COMPANY;
         });
         res.json({"code" : 200, "status" : companies});
-        //done
     });
   
 //    res.json({"code" : 200, "status" : "Success"});
