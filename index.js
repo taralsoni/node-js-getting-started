@@ -18,10 +18,10 @@ var connection = mysql.createConnection({
 
 function handle_database(req,res) {
  //  var query = "select * from test_users where name like '" + req.body.data.city + "%'";
- //if(req.body.data.investor = '')
- //{ 
+ if(req.body.data.investor = '')
+ { 
    var query = "select investors from transactions where city like '" + req.body.data.city + "%'";
- //}
+ }
 
 //else{
 //    var query = "select company from transactions where investors like '" + req.body.data.investor + "%'";
