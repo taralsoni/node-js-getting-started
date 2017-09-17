@@ -44,7 +44,6 @@ function handle_database(req, res) {
       "code": 200,
       "status": rows
     });
-    return;
   });
 
   //    res.json({"code" : 200, "status" : "Success"});
@@ -84,9 +83,22 @@ function handle_database(req, res) {
   //  });
 }
 
+
+app.get('/', function(request, response) {
+  connection.query("select * from transactions where city = 'Mumbai'", function(err, rows, fields) {
+    if (err) {
+      console.log('error: ', err);
+      throw err;
+    }
+    response.send(['Running test query: ', rows]);
+  });
+});
+
 app.post("/getTransactions", function(req, res) {
   handle_database(req, res);
 });
 
-app.listen(process.env.PORT || 3000);
-console.log("Success");
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
