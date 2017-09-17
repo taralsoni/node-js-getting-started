@@ -22,7 +22,7 @@ var connection = mysql.createConnection({
   user: 'bab6e201bd92f0',
   password: '208371fe',
   database: 'heroku_c25636dc46ee442',
-  debug: "true"
+  debug: "false"
 });
 
 
@@ -75,7 +75,7 @@ app.post("/getTransactions", function(req, res) {
 
 
 app.post("/testPost", function(req, res) {
-  res.send(['Got the following request from API.AI: ', req]);
+  res.send(['Got the following request from API.AI: ', req.body]);
 });
 
 
