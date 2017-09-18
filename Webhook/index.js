@@ -18,7 +18,7 @@ exports.transactionFn = (req, res) => {
     
   }
   if (req.body.result.parameters['investorName']) {
-    investor = req.body.result.parameters['investor'];
+    investor = req.body.result.parameters['investorName'];
   }
 
   callTransactionApi(city, date, company).then((output) => {
