@@ -52,11 +52,11 @@ function handle_database(req, res) {
     }
     var companies = "Following companies are invested by " + req.body.data.investor + "::";
     rows.forEach(function(rows) {
-      companies = companies + "::" + rows;
+      companies = companies + "::" + rows.company;
     });
     res.json({
       "code": 200,
-      "status": rows
+      "status": companies
     });
   });
 
