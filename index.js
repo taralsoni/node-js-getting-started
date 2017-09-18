@@ -56,7 +56,7 @@ function handle_database(req, res) {
     });
     res.json({
       "code": 200,
-      "status": companies
+      "status": rows
     });
   });
 
