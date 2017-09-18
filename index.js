@@ -15,7 +15,7 @@ app.use(parser.urlencoded({
 /**
  * Database connection
  * TODO: remove the db credentials
- * from here later on.
+ * from here later on.fhgfhgfghfgfghh
  */
 var connection = mysql.createConnection({
   host: 'us-cdbr-iron-east-05.cleardb.net',
@@ -28,7 +28,7 @@ var connection = mysql.createConnection({
 
 function handle_database(req, res) {
   //  var query = "select * from test_users where name like '" + req.body.data.city + "%'";
-  if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company =='0') {
+  if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company ==) {
     var query = "select investors from transactions where city like '" + req.body.data.city + "%'";
   }
   else if(req.body.data.investor!='0' && req.body.data.city =='0' && req.body.data.company == '0'){
@@ -38,7 +38,7 @@ function handle_database(req, res) {
     var query  = "select overview from transactions where company like '" + req.body.data.company"%'";
   })
 
-//gfhfhgfhgfgxfgx
+
   connection.query(query, function(err, rows, fields) {
     if (err) {
       res.json({
