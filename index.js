@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var parser = require('body-parser');
 var pg = require('pg');
 var app = express();
-
+var querytype = ="0";
 
 app.use(parser.json());
 app.use(parser.urlencoded({
@@ -30,12 +30,15 @@ function handle_database(req, res) {
   //  var query = "select * from test_users where name like '" + req.body.data.city + "%'";
   if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0') {
     var query = "select investors from transactions where city like '" + req.body.data.city + "%'";
+    querytype = '1';
   }
   else if(req.body.data.investor!='0' && req.body.data.city =='0' && req.body.data.company == '0'){
     var query = "select company from transactions where investors like '" + req.body.data.investor + "%'";
+    querytype = '2';
   }
   else if(req.body.data.investor == '0' && req.body.data.city=='0' && req.body.data.company != '0'){
     var query  = "select overview from transactions where company like '" + req.body.data.company + "%'";
+    querytype = '3';
   }
 
 
@@ -53,7 +56,7 @@ function handle_database(req, res) {
     });
     res.json({
       "code": 200,
-      "status": rows
+      "status": companies
     });
   });
 
@@ -67,24 +70,14 @@ function handle_database(req, res) {
  * is in running condition or not.
  */
 
-app.get('/', function(req, res) {
-  connection.query("select count(*) from transactions", function(err, rows, fields) {
-    if (err) {
-      console.log('error: ', err);
-      throw err;
-    }
-    res.send(['Running test query, total rows of data available: ', rows]);
-  });
-});
+
 
 app.post("/getTransactions", function(req, res) {
   handle_database(req, res);
 });
 
 
-app.post("/testPost", function(req, res) {
-  res.send(['Got the following request from API.AI: ', req.body]);
-});
+
 
 
 var port = process.env.PORT || 5000;
