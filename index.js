@@ -51,8 +51,8 @@ function handle_database(req, res) {
       return;
     }
     var companies = "Following companies are invested by " + req.body.data.investor + "::";
-    rows.forEach(function(company) {
-      companies = companies + "::" + company.name;
+    rows.forEach(function(rows) {
+      companies = companies + "::" + rows;
     });
     res.json({
       "code": 200,
