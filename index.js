@@ -28,15 +28,15 @@ var connection = mysql.createConnection({
 
 function handle_database(req, res) {
   //  var query = "select * from test_users where name like '" + req.body.data.city + "%'";
-  if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company ==) {
+  if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0') {
     var query = "select investors from transactions where city like '" + req.body.data.city + "%'";
   }
   else if(req.body.data.investor!='0' && req.body.data.city =='0' && req.body.data.company == '0'){
     var query = "select company from transactions where investors like '" + req.body.data.investor + "%'";
   }
-  else if(req.body.data.investor == '0' && req.body.data.city=='0' && req.body.data.company != '0'{
-    var query  = "select overview from transactions where company like '" + req.body.data.company"%'";
-  })
+  else if(req.body.data.investor == '0' && req.body.data.city=='0' && req.body.data.company != '0'){
+    var query  = "select overview from transactions where company like '" + req.body.data.company + "%'";
+  }
 
 
   connection.query(query, function(err, rows, fields) {
