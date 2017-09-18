@@ -52,7 +52,7 @@ function handle_database(req, res) {
     }
     var companies = "Following companies are invested by " + req.body.data.investor + "::";
     rows.forEach(function(company) {
-      companies = companies + "::" + company;
+      companies = companies + "::" + company.name;
     });
     res.json({
       "code": 200,
