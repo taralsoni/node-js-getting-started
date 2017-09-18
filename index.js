@@ -34,7 +34,7 @@ function handle_database(req, res) {
   else if(investor!='0' && city =='0'){
     var query = "select company from transactions where investors like '" + req.body.data.investor + "%'";
   }
-//gfhfhgfhg
+//gfhfhgfhgfgxfgx
   connection.query(query, function(err, rows, fields) {
     if (err) {
       res.json({
