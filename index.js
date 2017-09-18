@@ -31,7 +31,7 @@ function handle_database(req, res) {
   if (req.body.data.investor == '0') {
     var query = "select investors from transactions where city like '" + req.body.data.city + "%'";
   }
-  else if(investor!=='0' && city =='0'){
+  else if(investor!='0' && city =='0'){
     var query = "select company from transactions where investors like '" + req.body.data.investor + "%'";
   }
 //gfhfhgfhg
