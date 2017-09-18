@@ -50,13 +50,13 @@ function handle_database(req, res) {
       });
       return;
     }
-    var companies = "Following companies are in" + req.body.data.city + "::";
-    rows.forEach(function(companyInfo) {
-      companies = companies + "::" + companyInfo.name;
+    var companies = "Following companies are invested by " + req.body.data.investor + "::";
+    rows.forEach(function(company) {
+      companies = companies + "::" + company;
     });
     res.json({
       "code": 200,
-      "status": companies
+      "status": rows
     });
   });
 
