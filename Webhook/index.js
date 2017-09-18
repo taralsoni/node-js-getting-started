@@ -5,8 +5,9 @@ var request = require('request');
 //new comment line added to redeploy on heroku
 exports.transactionFn = (req, res) => {
   let date = '';
-  let city = "";
-  let company = "";
+  let city = "0";
+  let company = "0";
+  let investor = "0";
 
   if (req.body.result.parameters['cityName']) {
     city = req.body.result.parameters['cityName'];
@@ -14,7 +15,10 @@ exports.transactionFn = (req, res) => {
   }
   if (req.body.result.parameters['companyName']) {
     company = req.body.result.parameters['companyName'];
-    console.log('City: ' + city);
+    
+  }
+  if (req.body.result.parameters['investorName']) {
+    investor = req.body.result.parameters['investor'];
   }
 
   callTransactionApi(city, date, company).then((output) => {
@@ -33,12 +37,13 @@ function callTransactionApi (city, date, company) {
   return new Promise((resolve, reject) => {
         var data = {
           "data":{
-              "city": company
+              "city": city;
+              "investor": investor;
           }
         };
 
         request({
-            url: "https://test-node-getting-started.herokuapp.com/getTransactions",
+            url: "https://sarveshnewapp.herokuapp.com/getTransactions",
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -55,7 +60,7 @@ function callTransactionApi (city, date, company) {
          //   output.forEach(function(companyInfo) {
        //         companies = (companies=="")? companyInfo.name:  companies + ", " + companyInfo.name;
      //       });
-            resolve(companies);
+            resolve(output);
           }
         });
   });
