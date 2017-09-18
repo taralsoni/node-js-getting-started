@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var parser = require('body-parser');
 var pg = require('pg');
 var app = express();
-var querytype = ="0";
+var querytype = "0";
 
 app.use(parser.json());
 app.use(parser.urlencoded({
