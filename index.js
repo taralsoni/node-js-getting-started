@@ -42,7 +42,7 @@ function handle_database(req, res) {
   }
 
 
-  connection.query(query, function(err, rows, fields) {
+  connection.query(query,querytype, function(err, rows, fields) {
     if (err) {
       res.json({
         "code": 100,
