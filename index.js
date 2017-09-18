@@ -50,13 +50,24 @@ function handle_database(req, res) {
       });
       return;
     }
-    var companies = "Following companies are invested by " + req.body.data.investor + "::";
+    if(querytype == 1){
+      var output = "Following are the investors in the city of" + req.body.data.city + " :: "
+      rows.forEach(function(rows) {
+        output = output + " , " + rows.investors;
+      });
+    }
+    if(querytype == 2){
+    var output = "Following companies are invested by " + req.body.data.investor + "::";
     rows.forEach(function(rows) {
-      companies = companies + "::" + rows.company;
+      output = output + " , " + rows.company;
     });
+  }
+    if(querytype == 3){
+      var output = "The overview of the company" + req.body.data.company + " :: " rows.overview;
+    }
     res.json({
       "code": 200,
-      "status": companies
+      "status": output
     });
   });
 
