@@ -33,7 +33,7 @@ exports.transactionFn = (req, res) => {
 };
 
 
-function callTransactionApi (city, date, company) {
+function callTransactionApi (city, investor, company) {
   return new Promise((resolve, reject) => {
         var data = {
           "data":{
