@@ -55,12 +55,8 @@ function callTransactionApi (city, investor, company) {
             console.log("inside error");
             reject(error);
           } else {
-            console.log("inside response");
-           // var companies="";
-            var output = response.body.status;
-         //   output.forEach(function(companyInfo) {
-       //         companies = (companies=="")? companyInfo.name:  companies + ", " + companyInfo.name;
-     //       });
+            console.log("inside response");      
+            var output = response.status;
             resolve(output);
           }
         });
