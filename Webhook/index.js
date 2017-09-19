@@ -21,7 +21,7 @@ exports.transactionFn = (req, res) => {
     investor = req.body.result.parameters['investorName'];
   }
 
-  callTransactionApi(city, date, company).then((output) => {
+  callTransactionApi(city, investor, company).then((output) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ 'speech': JSON.stringify(output), 'displayText': JSON.stringify(output) }));
   }).catch((error) => {
@@ -37,8 +37,9 @@ function callTransactionApi (city, date, company) {
   return new Promise((resolve, reject) => {
         var data = {
           "data":{
-              "city": city;
-              "investor": investor;
+              "city": city,
+              "investor": investor,
+              "company": comapany
           }
         };
 
@@ -55,7 +56,7 @@ function callTransactionApi (city, date, company) {
             reject(error);
           } else {
             console.log("inside response");
-            var companies="";
+           // var companies="";
             var output = response.body.status;
          //   output.forEach(function(companyInfo) {
        //         companies = (companies=="")? companyInfo.name:  companies + ", " + companyInfo.name;

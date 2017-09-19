@@ -51,7 +51,7 @@ function handle_database(req, res) {
       return;
     }
     if(querytype == '1'){
-      var output = "Following are the investors in the city of" + req.body.data.city + " :: "
+      var output = "Following are the investors in the city of " + req.body.data.city + " :: "
       rows.forEach(function(rows) {
         output = output + " , " + rows.investors;
       });
@@ -63,7 +63,7 @@ function handle_database(req, res) {
     });
   }
     if(querytype == '3'){
-      var output = "The overview of the company" + req.body.data.company + " :: " + rows;
+      var output = "The overview of the company " + req.body.data.company + " :: " + rows.overview;
     }
     res.json({
       "code": 200,
