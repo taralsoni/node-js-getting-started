@@ -63,10 +63,8 @@ function handle_database(req, res) {
     });
     }
     if(querytype == '3'){
-      var output = "The overview of the company " + req.body.data.company + " :: ";
-      rows.forEach(function(rows) {
-        output = output + " , " + rows.overview;
-      });
+      var output = "The overview of the company " + req.body.data.company + " :: " rows.overview[0];
+      
     }
     res.json({
       "code": 200,
