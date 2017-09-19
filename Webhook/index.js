@@ -5,15 +5,15 @@ var request = require('request');
 //new comment line added to redeploy on heroku kjsdfhksjfs
 exports.transactionFn = (req, res) => {
   let date = '';
-  let city = "0";
-  let company = "0";
-  let investor = "0";
+  var city = "0";
+  var company = "0";
+  var investor = "0";
 
   if (req.body.result.parameters['cityName']) {
     city = req.body.result.parameters['cityName'];
     console.log('City: ' + city);
   }
-/*
+
   if (req.body.result.parameters['companyName']) {
     company = req.body.result.parameters['companyName'];
     
@@ -21,8 +21,8 @@ exports.transactionFn = (req, res) => {
   if (req.body.result.parameters['investorName']) {
     investor = req.body.result.parameters['investorName'];
   }
-*/
-  callTransactionApi(city).then((output) => {
+
+  callTransactionApi(city, investor, company).then((output) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ 'speech': JSON.stringify(output), 'displayText': JSON.stringify(output) }));
   }).catch((error) => {
@@ -34,13 +34,13 @@ exports.transactionFn = (req, res) => {
 };
 
 
-function callTransactionApi (city) {
+function callTransactionApi (city, investor, company) {
   return new Promise((resolve, reject) => {
         var data = {
           "data":{
               "city": city,
-              "investor": "0",
-              "company": "0"
+              "investor": investor,
+              "company": company
           }
         };
 
