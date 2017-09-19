@@ -63,7 +63,10 @@ function handle_database(req, res) {
     });
     }
     if(querytype == '3'){
-      var output = "The overview of the company " + req.body.data.company + " :: " + rows.overview;
+      var output = "The overview of the company " + req.body.data.company + " :: ";
+      rows.forEach(function(rows) {
+        output = output + " , " + rows.overview;
+      });
     }
     res.json({
       "code": 200,
@@ -72,7 +75,7 @@ function handle_database(req, res) {
   });
 
 }
-//gfghhjvhvj
+//gfghhjvhvj2324
 
 /**
  * This is the default 'get' method that gets
