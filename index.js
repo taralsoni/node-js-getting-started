@@ -33,7 +33,7 @@ function handle_database(req, res) {
     querytype = '1';
   }
   else if(req.body.data.investor!='0' && req.body.data.city =='0' && req.body.data.company == '0'){
-    var query = "select company from transactions where investors like '" + req.body.data.investor + "%'";
+    var query = "select distinct company from transactions where investors like '" + req.body.data.investor + "%'";
     querytype = '2';
   }
   else if(req.body.data.investor == '0' && req.body.data.city=='0' && req.body.data.company != '0'){
@@ -42,6 +42,7 @@ function handle_database(req, res) {
   }
   else if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag == '1') {
     var query = "select company from transactions where description like '%fin%'";
+    querytype = '4';
   }
 
 
@@ -67,7 +68,12 @@ function handle_database(req, res) {
     }
     if(querytype == '3'){
       var output = "The overview of the company " + req.body.data.company + " :: " + rows.overview;
-      
+    }
+    if(querytype == '4'){
+      var output = "The fintech companies in " + req.body.data.city + " :: ";
+      rows.forEach(function(rows) {
+        output = output + "  " + rows.company;
+      });
     }
     res.json({
       "code": 200,
