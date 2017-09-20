@@ -29,8 +29,14 @@ var connection = mysql.createConnection({
 function handle_database(req, res) {
   //  var query = "select * from test_users where name like '" + req.body.data.city + "%'";
   if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0') {
+    if(req.body.data.companyincity == '0'){
     var query = "select investors from transactions where city like '" + req.body.data.city + "%'";
     querytype = '1';
+   }
+   else if(req.body.data.companyincity == '1'){
+      var query = "select company from transactions where city like '" + req.body.data.city + "%'";
+      querytype = '1';
+    }
   }
   else if(req.body.data.investor!='0' && req.body.data.city =='0' && req.body.data.company == '0'){
     var query = "select company from transactions where investors like '" + req.body.data.investor + "%'";
@@ -42,6 +48,7 @@ function handle_database(req, res) {
   }
 
 
+
   connection.query(query,querytype, function(err, rows, fields) {
     if (err) {
       res.json({
@@ -51,33 +58,33 @@ function handle_database(req, res) {
       return;
     }
     if(querytype == '1'){
+      if(req.body.data.companyincity == '0'){
+        var output = "Following are the companies in the city of " + req.body.data.city + " :: "
+        rows.forEach(function(rows) {
+          output = output + " , " + rows.company;
+        });
+       }
+      else if(req.body.data.companyincity == '1'){
       var output = "Following are the investors in the city of " + req.body.data.city + " :: "
       rows.forEach(function(rows) {
         output = output + " , " + rows.investors;
-        res.json({
-          "code": 200,
-          "status": output
-        });
       });
+     }
     }
     if(querytype == '2'){
     var output = "Following companies are invested by " + req.body.data.investor + "::";
     rows.forEach(function(rows) {
       output = output + " , " + rows.company;
-      res.json({
-        "code": 200,
-        "status": output
-      });
     });
     }
     if(querytype == '3'){
-      var output = rows.overview;
-      res.json({
-        "code": 200,
-        "status": rows
-      });
+      var output = "The overview of the company " + req.body.data.company + " :: " + rows.overview;
+      
     }
-    
+    res.json({
+      "code": 200,
+      "status": output
+    });
   });
 
 }
