@@ -28,7 +28,7 @@ var connection = mysql.createConnection({
 
 function handle_database(req, res) {
   //  var query = "select * from test_users where name like '" + req.body.data.city + "%'";
-  if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0') {
+  if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag == '0') {
     var query = "select investors from transactions where city like '" + req.body.data.city + "%'";
     querytype = '1';
   }
@@ -39,6 +39,9 @@ function handle_database(req, res) {
   else if(req.body.data.investor == '0' && req.body.data.city=='0' && req.body.data.company != '0'){
     var query  = "select overview from transactions where company like '" + req.body.data.company + "%'";
     querytype = '3';
+  }
+  else if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag == '1') {
+    var query = "select company from transactions where description like '%fin%'";
   }
 
 
@@ -53,17 +56,17 @@ function handle_database(req, res) {
     if(querytype == '1'){
       var output = "Following are the investors in the city of " + req.body.data.city + " :: "
       rows.forEach(function(rows) {
-        output = output + " , " + rows.investors;
+        output = output + "  " + rows.investors;
       });
     }
     if(querytype == '2'){
     var output = "Following companies are invested by " + req.body.data.investor + "::";
     rows.forEach(function(rows) {
-      output = output + " , " + rows.company;
+      output = output + "  " + rows.company;
     });
     }
     if(querytype == '3'){
-      var output = "The overview of the company " + req.body.data.company + " :: " + rows.overview[0];
+      var output = "The overview of the company " + req.body.data.company + " :: " + rows.overview;
       
     }
     res.json({
