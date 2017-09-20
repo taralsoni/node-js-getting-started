@@ -41,7 +41,7 @@ function handle_database(req, res) {
     querytype = '3';
   }
   else if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag == '1') {
-    var query = "select company from transactions where description like '%fin%'";
+    var query = "select company from transactions where description like '%data%'";
     querytype = '4';
   }
 

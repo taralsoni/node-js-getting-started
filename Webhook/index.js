@@ -8,6 +8,7 @@ exports.transactionFn = (req, res) => {
   var city = "0";
   var company = "0";
   var investor = "0";
+  var finflag = '0';
 
   if (req.body.result.parameters['cityName']) {
     city = req.body.result.parameters['cityName'];
@@ -20,6 +21,9 @@ exports.transactionFn = (req, res) => {
   }
   if (req.body.result.parameters['investorName']) {
     investor = req.body.result.parameters['investorName'];
+  }
+  if (req.body.result.parameters['any1']) {
+    finflag = '1';
   }
 
   callTransactionApi(city, investor, company).then((output) => {
@@ -40,7 +44,8 @@ function callTransactionApi (city, investor, company) {
           "data":{
               "city": city,
               "investor": investor,
-              "company": company
+              "company": company,
+              "finflag": finflag
           }
         };
 
