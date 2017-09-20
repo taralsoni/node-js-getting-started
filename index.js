@@ -37,7 +37,7 @@ function handle_database(req, res) {
     querytype = '2';
   }
   else if(req.body.data.investor == '0' && req.body.data.city=='0' && req.body.data.company != '0'){
-    var query  = "select investors from transactions where company like '" + req.body.data.company + "%'";
+    var query = "select overview from transactions where company like '" + req.body.data.company + "%'";
     querytype = '3';
   }
 
@@ -54,22 +54,30 @@ function handle_database(req, res) {
       var output = "Following are the investors in the city of " + req.body.data.city + " :: "
       rows.forEach(function(rows) {
         output = output + " , " + rows.investors;
+        res.json({
+          "code": 200,
+          "status": output
+        });
       });
     }
     if(querytype == '2'){
     var output = "Following companies are invested by " + req.body.data.investor + "::";
     rows.forEach(function(rows) {
       output = output + " , " + rows.company;
+      res.json({
+        "code": 200,
+        "status": output
+      });
     });
     }
     if(querytype == '3'){
-      var output = "The overview of the company " + req.body.data.company + " :: " + rows.overview;
-      
+      var output = rows.overview;
+      res.json({
+        "code": 200,
+        "status": rows
+      });
     }
-    res.json({
-      "code": 200,
-      "status": output
-    });
+    
   });
 
 }
