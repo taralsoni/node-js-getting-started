@@ -37,7 +37,7 @@ function handle_database(req, res) {
     querytype = '2';
   }
   else if(req.body.data.investor == '0' && req.body.data.city=='0' && req.body.data.company != '0'){
-    var query  = "select overview from transactions where company like '" + req.body.data.company + "%'";
+    var query  = "select investors from transactions where company like '" + req.body.data.company + "%'";
     querytype = '3';
   }
 
