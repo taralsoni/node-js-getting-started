@@ -41,7 +41,7 @@ function handle_database(req, res) {
     querytype = '3';
   }
   else if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag == '1') {
-    var query = "select company from transactions where description like '%data%'";
+    var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
     querytype = '4';
   }
 
@@ -72,7 +72,7 @@ function handle_database(req, res) {
     if(querytype == '4'){
       var output = "The fintech companies in " + req.body.data.city + " :: ";
       rows.forEach(function(rows) {
-        output = output + "  " + rows.company;
+        output = output + " | " + rows.company;
       });
     }
     res.json({
