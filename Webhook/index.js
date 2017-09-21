@@ -26,11 +26,11 @@ exports.transactionFn = (req, res) => {
     finflag = req.body.result.parameters['dataAnalytics'];
   }
 
-  callTransactionApi(city, investor, company, finflag).then((output, finflag) => {
+  callTransactionApi(city, investor, company, finflag).then((output) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ 'speech': JSON.stringify(finglag), 'displayText': JSON.stringify(finflag) }));
   }).catch((error) => {
-    // If there is an error let the user know
+    // If there is an error let the user knowdfsfsdf
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ 'speech': error, 'displayText': error }));
     console.log(" Error in callback " + error);
