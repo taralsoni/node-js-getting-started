@@ -40,7 +40,7 @@ function handle_database(req, res) {
     var query  = "select overview from transactions where company like '" + req.body.data.company + "%'";
     querytype = '3';
   }
-  else if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag !== '0') {
+  else if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag !== "0") {
     var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
     querytype = '4';
   }
@@ -72,7 +72,7 @@ function handle_database(req, res) {
     if(querytype == '4'){
       var output = "The Data Analytics companies in " + req.body.data.city + " :: ";
       rows.forEach(function(rows) {
-        output = rows;
+        output = output + " | " + rows.company;
       });
     }
     res.json({
