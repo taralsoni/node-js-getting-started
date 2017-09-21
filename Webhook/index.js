@@ -8,7 +8,7 @@ exports.transactionFn = (req, res) => {
   var city = "0";
   var company = "0";
   var investor = "0";
-  var finflag = '0';
+  var finflag = "0";
 
   if (req.body.result.parameters['cityName']) {
     city = req.body.result.parameters['cityName'];
