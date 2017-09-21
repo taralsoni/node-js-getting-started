@@ -28,7 +28,7 @@ exports.transactionFn = (req, res) => {
 
   callTransactionApi(city, investor, company, finflag).then((output) => {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify({ 'speech': JSON.stringify(finglag), 'displayText': JSON.stringify(finflag) }));
+    res.send(JSON.stringify({ 'speech': JSON.stringify(req.body.result.parameters['dataAnalytics']), 'displayText': JSON.stringify(req.body.result.parameters['dataAnalytics']) }));
   }).catch((error) => {
     // If there is an error let the user knowdfsfsdf
     res.setHeader('Content-Type', 'application/json');
