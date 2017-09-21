@@ -2,13 +2,17 @@
 const https = require('https');
 var request = require('request');
 //hi just understanding push pull
-//new comment line added to redeploy on heroku kjsdfhksjfsdjhsfgjdh
+//new comment line added to redeploy on heroku kjsdfhksjfsdjhsfgjdhjhsfbs
 exports.transactionFn = (req, res) => {
   let date = '';
   var city = "0";
   var company = "0";
   var investor = "0";
   var finflag = "0";
+
+  if (req.body.result.parameters['domain']) {
+    finflag = req.body.result.parameters['domain'];
+  }
 
   if (req.body.result.parameters['cityName']) {
     city = req.body.result.parameters['cityName'];
@@ -22,13 +26,11 @@ exports.transactionFn = (req, res) => {
   if (req.body.result.parameters['investorName']) { 
     investor = req.body.result.parameters['investorName'];
   }
-   if (req.body.result.parameters['dataAnalytics']) {
-    finflag = req.body.result.parameters['dataAnalytics'];
-  }
+   
 
   callTransactionApi(city, investor, company, finflag).then((output) => {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify({ 'speech': JSON.stringify(req.body.result.parameters['dataAnalytics']), 'displayText': JSON.stringify(req.body.result.parameters['dataAnalytics']) }));
+    res.send(JSON.stringify({ 'speech': JSON.stringify(output), 'displayText': JSON.stringify(output) }));
   }).catch((error) => {
     // If there is an error let the user knowdfsfsdf
     res.setHeader('Content-Type', 'application/json');
