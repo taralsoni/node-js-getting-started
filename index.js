@@ -15,7 +15,7 @@ app.use(parser.urlencoded({
 /**
  * Database connection
  * TODO: remove the db credentials
- * from here later on.fhgfhgfghfgfghhfsdfdsshsdjfsdfsd
+ * from here later on.fhgfhgfghfgfghh
  */
 var connection = mysql.createConnection({
   host: 'us-cdbr-iron-east-05.cleardb.net',
@@ -40,7 +40,7 @@ function handle_database(req, res) {
     var query  = "select overview from transactions where company like '" + req.body.data.company + "%'";
     querytype = '3';
   }
-  else if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag != '0') {
+  else if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag !== '0') {
     var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
     querytype = '4';
   }
@@ -55,7 +55,7 @@ function handle_database(req, res) {
       return;
     }
     if(querytype == '1'){
-      var output = "Following are the investors in the city of " + req.body.data.city + " :: ";
+      var output = "Following are the investors in the city of " + req.body.data.city + " :: "
       rows.forEach(function(rows) {
         output = output + " | " + rows.investors;
       });
@@ -67,12 +67,12 @@ function handle_database(req, res) {
     });
     }
     if(querytype == '3'){
-      var output = "The overview of the company " + req.body.data.company + " :: " + rows.overview;
+      var output = rows;
     }
     if(querytype == '4'){
       var output = "The Data Analytics companies in " + req.body.data.city + " :: ";
       rows.forEach(function(rows) {
-        output = output + " | " + rows.company;
+        output = rows;
       });
     }
     res.json({
@@ -82,7 +82,7 @@ function handle_database(req, res) {
   });
 
 }
-//gfghhjvhvj2324232sbdjhfbsdjfbsdhdfhgf
+//gfghhjvhvj2324232sbdjhfbsdjfbsdhd
 
 /**
  * This is the default 'get' method that gets
