@@ -38,7 +38,7 @@ exports.transactionFn = (req, res) => {
 };
 
 
-function callTransactionApi (city, investor, company) {
+function callTransactionApi (city, investor, company,finflag) {
   return new Promise((resolve, reject) => {
         var data = {
           "data":{
