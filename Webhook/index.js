@@ -26,7 +26,7 @@ exports.transactionFn = (req, res) => {
     finflag = '1';
   }
 
-  callTransactionApi(city, investor, company).then((output) => {
+  callTransactionApi(city, investor, company, finflag).then((output) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ 'speech': JSON.stringify(output), 'displayText': JSON.stringify(output) }));
   }).catch((error) => {
@@ -38,7 +38,7 @@ exports.transactionFn = (req, res) => {
 };
 
 
-function callTransactionApi (city, investor, company,finflag) {
+function callTransactionApi (city, investor, company, finflag) {
   return new Promise((resolve, reject) => {
         var data = {
           "data":{
