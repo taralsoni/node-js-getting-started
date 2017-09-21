@@ -19,11 +19,11 @@ exports.transactionFn = (req, res) => {
     company = req.body.result.parameters['companyName'];
     
   }
-  if (req.body.result.parameters['investorName']) {
+  if (req.body.result.parameters['investorName']) { 
     investor = req.body.result.parameters['investorName'];
   }
   if (req.body.result.parameters['any1']) {
-    finflag = '1';
+    finflag = req.body.result.parameters['any1'];
   }
 
   callTransactionApi(city, investor, company, finflag).then((output) => {
