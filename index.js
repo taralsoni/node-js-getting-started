@@ -36,13 +36,17 @@ function handle_database(req, res) {
     var query = "select distinct company from transactions where investors like '" + req.body.data.investor + "%'";
     querytype = '2';
   }
-  else if(req.body.data.investor == '0' && req.body.data.city=='0' && req.body.data.company != '0'){
+  else if(req.body.data.investor == '0' && req.body.data.city=='0' && req.body.data.company != '0' && req.body.data.fund =='0'){
     var query  = "select overview from transactions where company like '" + req.body.data.company + "%'";
     querytype = '3';
   }
   else if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag !== "0") {
     var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
     querytype = '4';
+  }
+  else if(req.body.data.investor == '0' && req.body.data.city =='0' && req.body.data.company != '0' && req.body.data.fund !== "0") {
+    var query = "select total_funding from transactions where city like '" + req.body.data.city + "%'";
+    querytype = '5';
   }
 
 
@@ -55,14 +59,14 @@ function handle_database(req, res) {
       return;
     }
     if(querytype == '1'){
-      var output = "Following are the investors in the city of " + req.body.data.city + " :: "
-      rows.forEach(function(rows) {
-        output = output + " | " + rows.investors;
+      var output = "Showing all companies in " + req.body.data.city + " :: "
+      rows.forEach(function(row) {
+        output = output + "\n" + rows.investors;
       });
     }
     if(querytype == '2'){
     var output = "Following companies are invested by " + req.body.data.investor + "::";
-    rows.forEach(function(rows) {
+    rows.forEach(function(row) {
       output = output + "  " + rows.company;
     });
     }
@@ -71,9 +75,12 @@ function handle_database(req, res) {
     }
     if(querytype == '4'){
       var output = "The Data Analytics companies in " + req.body.data.city + " :: ";
-      rows.forEach(function(rows) {
-        output = output + " | " + rows.company;
+      rows.forEach(function(row) {
+        output = output + "\n " + rows.company;
       });
+    if(querytype == '5'){
+      var output = "The total funding for the company " + req.body.data.company + " is " + rows.total_funding;
+          
     }
     res.json({
       "code": 200,
