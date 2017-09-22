@@ -8,17 +8,17 @@ exports.transactionFn = (req, res) => {
   var city = "0";
   var company = "0";
   var investor = "0";
-  var domain = "0";
+  var finflag = "0";
 
-  if (req.body.result.parameters['domainName']) {
-    domain = req.body.result.parameters['domainName'];
+  if (req.body.result.parameters['domain']) {
+    finflag = req.body.result.parameters['domain'];
   }
 
   if (req.body.result.parameters['cityName']) {
     city = req.body.result.parameters['cityName'];
     console.log('City: ' + city);
   }
-/*
+
   if (req.body.result.parameters['companyName']) {
     company = req.body.result.parameters['companyName'];
     
@@ -26,9 +26,9 @@ exports.transactionFn = (req, res) => {
   if (req.body.result.parameters['investorName']) { 
     investor = req.body.result.parameters['investorName'];
   }
-   */
+   
 
-  callTransactionApi(city, domain).then((output) => {
+  callTransactionApi(city, investor, company, finflag).then((output) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ 'speech': JSON.stringify(output), 'displayText': JSON.stringify(output) }));
   }).catch((error) => {
@@ -40,12 +40,14 @@ exports.transactionFn = (req, res) => {
 };
 
 
-function callTransactionApi (city, domain) {
+function callTransactionApi (city, investor, company, finflag) {
   return new Promise((resolve, reject) => {
         var data = {
           "data":{
               "city": city,
-              "domain": domain
+              "investor": investor,
+              "company": company,
+              "finflag": finflag
           }
         };
 
