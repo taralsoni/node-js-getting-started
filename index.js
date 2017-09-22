@@ -28,6 +28,12 @@ var connection = mysql.createConnection({
 
 function handle_database(req, res) {
   //  var query = "select * from test_users where name like '" + req.body.data.city + "%'";
+  if(req.body.data.city !='0' && req.body.data.domain !='0') {
+    var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
+    querytype = '4';
+  }
+
+  /*
   if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.domain == '0') {
     var query = "select investors from transactions where city like '" + req.body.data.city + "%'";
     querytype = '1';
@@ -44,7 +50,7 @@ function handle_database(req, res) {
     var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
     querytype = '4';
   }
-
+*/
 
   connection.query(query,querytype, function(err, rows, fields) {
     if (err) {
