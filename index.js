@@ -60,13 +60,13 @@ function handle_database(req, res) {
     }
     if(querytype == '1'){
       var output = "Showing all companies in " + req.body.data.city + " :: "
-      rows.forEach(function(row) {
+      rows.forEach(function(rows) {
         output = output + "\n" + rows.investors;
       });
     }
     if(querytype == '2'){
     var output = "Following companies are invested by " + req.body.data.investor + "::";
-    rows.forEach(function(row) {
+    rows.forEach(function(rows) {
       output = output + "  " + rows.company;
     });
     }
@@ -75,7 +75,7 @@ function handle_database(req, res) {
     }
     if(querytype == '4'){
       var output = "The Data Analytics companies in " + req.body.data.city + " :: ";
-      rows.forEach(function(row) {
+      rows.forEach(function(rows) {
         output = output + "\n " + rows.company;
       });
     if(querytype == '5'){
