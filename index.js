@@ -79,7 +79,7 @@ function handle_database(req, res) {
         output = output + "\n " + rows.company;
       });
     if(querytype == '5'){
-      var output = "The total funding for the company " + req.body.data.company + " is " + rows.total_funding;
+      var output = rows //"The total funding for the company " + req.body.data.company + " is " + rows.total_funding;
           
     }
     res.json({
