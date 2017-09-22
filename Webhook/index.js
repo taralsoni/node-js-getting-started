@@ -9,7 +9,6 @@ exports.transactionFn = (req, res) => {
   var company = "0";
   var investor = "0";
   var finflag = "0";
-  var fund = "0";
 
   if (req.body.result.parameters['domain']) {
     finflag = req.body.result.parameters['domain'];
@@ -27,10 +26,6 @@ exports.transactionFn = (req, res) => {
   if (req.body.result.parameters['investorName']) { 
     investor = req.body.result.parameters['investorName'];
   }
-  if (req.body.result.parameters['fundName']) {
-    fund = req.body.result.parameters['fundName'];
-    
-  }
    
 
   callTransactionApi(city, investor, company, finflag).then((output) => {
@@ -45,15 +40,14 @@ exports.transactionFn = (req, res) => {
 };
 
 
-function callTransactionApi (city, investor, company, finflag, fund) {
+function callTransactionApi (city, investor, company, finflag) {
   return new Promise((resolve, reject) => {
         var data = {
           "data":{
               "city": city,
               "investor": investor,
               "company": company,
-              "finflag": finflag,
-              "fund": fund
+              "finflag": finflag
           }
         };
 
