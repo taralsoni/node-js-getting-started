@@ -4,6 +4,7 @@ var parser = require('body-parser');
 var pg = require('pg');
 var app = express();
 var querytype = "0";
+var os = require('os');
 
 app.use(parser.json());
 app.use(parser.urlencoded({
@@ -57,13 +58,13 @@ function handle_database(req, res) {
     if(querytype == '1'){
       var output = "Showing list of companies in " + req.body.data.city + " :: "
       rows.forEach(function(rows) {
-        output = output + "\r\n " + rows.company;
+        output = output + os.EOL + rows.company;
       });
     }
     if(querytype == '2'){
     var output = "Following companies are invested by " + req.body.data.investor + "::";
     rows.forEach(function(rows) {
-      output = output + "\r\n" + rows.company;
+      output = output + os.EOL + rows.company;
     });
     }
     if(querytype == '3'){
