@@ -29,7 +29,7 @@ var connection = mysql.createConnection({
 function handle_database(req, res) {
   //  var query = "select * from test_users where name like '" + req.body.data.city + "%'";
   if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag == '0') {
-    var query = "select investors from transactions where city like '" + req.body.data.city + "%'";
+    var query = "select company from transactions where city like '" + req.body.data.city + "%'";
     querytype = '1';
   }
   else if(req.body.data.investor!='0' && req.body.data.city =='0' && req.body.data.company == '0'){
@@ -55,9 +55,9 @@ function handle_database(req, res) {
       return;
     }
     if(querytype == '1'){
-      var output = "Following are the investors in the city of " + req.body.data.city + " :: "
+      var output = "Showing list of companies in " + req.body.data.city + " :: "
       rows.forEach(function(rows) {
-        output = output + " | " + rows.investors;
+        output = output + " | " + rows.company;
       });
     }
     if(querytype == '2'){
