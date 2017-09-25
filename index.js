@@ -41,7 +41,7 @@ function handle_database(req, res) {
     var query  = "select overview from transactions where company like '" + req.body.data.company + "%'";
     querytype = '3';
   }
-  if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag != "0") {
+    if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag != "0") {
     var query = "select company from transactions where city like '" + req.body.data.city + "%'";
    // var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
     querytype = '4';
@@ -84,7 +84,7 @@ function handle_database(req, res) {
   });
 
 }
-//gfghhjvhvj2324232sbdjhfbsdjfbsdhdsdfsdsfdfssdfs
+//gfghhjvhvj2324232sbdjhfbsdjfbsdhdsdfsdsfdfssdfssdfs
 
 /**
  * This is the default 'get' method that gets
