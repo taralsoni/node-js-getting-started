@@ -46,8 +46,9 @@ function callTransactionApi (city, investor, company, finflag) {
           "data":{
               "city": city,
               "investor": investor,
-              "company": company,
-              "finflag": finflag
+              "finflag": finflag,
+              "company": company
+              
           }
         };
 
