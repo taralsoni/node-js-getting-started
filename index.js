@@ -68,7 +68,7 @@ function handle_database(req, res) {
     });
     }
     if(querytype == '3'){
-      var output = rows;
+      var output = rows[0].overview;
     }
     if(querytype == '4'){
       var output = "The Data Analytics companies in " + req.body.data.city + " :: ";
