@@ -29,7 +29,6 @@ var connection = mysql.createConnection({
 
 function handle_database(req, res) {
   //  var query = "select * from test_users where name like '" + req.body.data.city + "%'";
-  /*
   if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag == '0') {
     var query = "select company from transactions where city like '" + req.body.data.city + "%'";
     querytype = '1';
@@ -47,8 +46,7 @@ function handle_database(req, res) {
    // var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
     querytype = '4';
   }
-*/ 
-var query = "select total_funding from transactions where company like '" + req.body.data.company + "%'";
+
 
   connection.query(query,querytype, function(err, rows, fields) {
     if (err) {
@@ -58,7 +56,6 @@ var query = "select total_funding from transactions where company like '" + req.
       });
       return;
     }
-/*
     if(querytype == '1'){
       var output = "Showing list of companies in " + req.body.data.city + " :: "
       rows.forEach(function(rows) {
@@ -80,10 +77,6 @@ var query = "select total_funding from transactions where company like '" + req.
         output = output + " | " + rows.company;
       });
     }
-    */
-    var output = "The funding for the company is  " + " :: ";
-   var output = rows[0].total_funding;
-
     res.json({
       "code": 200,
       "status": output
@@ -91,7 +84,7 @@ var query = "select total_funding from transactions where company like '" + req.
   });
 
 }
-//gfghhjvhvj2324232sbdjhfbsdjfbsdhdsdfsdsfdfssdfssdfsgdfgd
+//gfghhjvhvj2324232sbdjhfbsdjfbsdhdsdfsdsfdfssdfssdfs
 
 /**
  * This is the default 'get' method that gets
