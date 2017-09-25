@@ -48,7 +48,7 @@ function handle_database(req, res) {
     querytype = '4';
   }
 */ 
-var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
+var query = "select total_funding from transactions where company like '" + req.body.data.company + "%'";
 
   connection.query(query,querytype, function(err, rows, fields) {
     if (err) {
@@ -81,10 +81,8 @@ var query = "select company from transactions where description like '%data%' an
       });
     }
     */
-    var output = "The Data Analytics companies in " + req.body.data.city + " :: ";
-    rows.forEach(function(rows) {
-      output = output + " | " + rows.company;
-    });
+    var output = "The funding for the company is  " + " :: ";
+   var output = rows[0].total_funding;
 
     res.json({
       "code": 200,
