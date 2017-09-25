@@ -33,15 +33,15 @@ function handle_database(req, res) {
     var query = "select company from transactions where city like '" + req.body.data.city + "%'";
     querytype = '1';
   }
-  else if(req.body.data.investor!='0' && req.body.data.city =='0' && req.body.data.company == '0'){
+  if(req.body.data.investor!='0' && req.body.data.city =='0' && req.body.data.company == '0'){
     var query = "select distinct company from transactions where investors like '" + req.body.data.investor + "%'";
     querytype = '2';
   }
-  else if(req.body.data.investor == '0' && req.body.data.city=='0' && req.body.data.company != '0'){
+  if(req.body.data.investor == '0' && req.body.data.city=='0' && req.body.data.company != '0'){
     var query  = "select overview from transactions where company like '" + req.body.data.company + "%'";
     querytype = '3';
   }
-  else if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag != "0") {
+  if(req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag != "0") {
     var query = "select company from transactions where city like '" + req.body.data.city + "%'";
    // var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
     querytype = '4';
