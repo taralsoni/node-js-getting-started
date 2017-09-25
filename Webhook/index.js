@@ -32,7 +32,7 @@ exports.transactionFn = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ 'speech': JSON.stringify(output), 'displayText': JSON.stringify(output) }));
   }).catch((error) => {
-    // If there is an error let the user knowdfsfsdfdfssfsdfds
+    // If there is an error let the user knowdfsfsdfdfssfsdfdssdfs
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ 'speech': error, 'displayText': error }));
     console.log(" Error in callback " + error);
