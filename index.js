@@ -29,6 +29,7 @@ var connection = mysql.createConnection({
 
 function handle_database(req, res) {
   //  var query = "select * from test_users where name like '" + req.body.data.city + "%'";
+  /*
   if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag == '0') {
     var query = "select company from transactions where city like '" + req.body.data.city + "%'";
     querytype = '1';
@@ -46,7 +47,8 @@ function handle_database(req, res) {
    // var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
     querytype = '4';
   }
-
+*/ 
+var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
 
   connection.query(query,querytype, function(err, rows, fields) {
     if (err) {
@@ -56,6 +58,7 @@ function handle_database(req, res) {
       });
       return;
     }
+/*
     if(querytype == '1'){
       var output = "Showing list of companies in " + req.body.data.city + " :: "
       rows.forEach(function(rows) {
@@ -77,6 +80,12 @@ function handle_database(req, res) {
         output = output + " | " + rows.company;
       });
     }
+    */
+    var output = "The Data Analytics companies in " + req.body.data.city + " :: ";
+    rows.forEach(function(rows) {
+      output = output + " | " + rows.company;
+    });
+
     res.json({
       "code": 200,
       "status": output
