@@ -79,6 +79,9 @@ function handle_database(req, res) {
     }
     res.json({
       "code": 200,
+      'headers': {
+        "Content-Type": "application/json"
+        },
       "status": output
     });
   });
