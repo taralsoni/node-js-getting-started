@@ -77,23 +77,39 @@ function handle_database(req, res) {
         output = output + " | " + rows.company;
       });
     }
-    response_body = {
-      
-      "speech": output,
-      "displayText": output,
-      "data": {},
-      "contextOut": [],
-      "source": "DuckDuckGo"
-      
-    }
+    res.json({
+      "code": 200,
+      'headers': {
+        "Content-Type": "application/json"
+        },
+      "status": "success",
+      "body": {
+        
+        "speech": output,
+        "displayText": output,
+        "data": {},
+        "contextOut": [],
+        "source": "DuckDuckGo"
+        
+      }
+    });
+    /*
     res = {
       "code": 200,
       'headers': {
         "Content-Type": "application/json"
         },
-      "status": success,
-      "body": response_body
-    };
+      "status": "success",
+      "body": {
+        
+        "speech": output,
+        "displayText": output,
+        "data": {},
+        "contextOut": [],
+        "source": "DuckDuckGo"
+        
+      }
+    }; */
   });
 
 }
