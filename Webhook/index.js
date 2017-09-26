@@ -65,7 +65,7 @@ function callTransactionApi (city, investor, company, finflag) {
             reject(error);
           } else {
             console.log("inside response");      
-            var output = response.body.status;
+            var output = response.body.displayText;
             resolve(output);
           }
         });

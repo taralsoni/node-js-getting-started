@@ -77,13 +77,23 @@ function handle_database(req, res) {
         output = output + " | " + rows.company;
       });
     }
-    res.json({
+    response_body = {
+      
+      "speech": output,
+      "displayText": output,
+      "data": {},
+      "contextOut": [],
+      "source": "DuckDuckGo"
+      
+    }
+    res = {
       "code": 200,
       'headers': {
         "Content-Type": "application/json"
         },
-      "status": output
-    });
+      "status": success,
+      "body": response_body
+    };
   });
 
 }
