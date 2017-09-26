@@ -46,11 +46,6 @@ function handle_database(req, res) {
     var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
     querytype = '4';
   }
-  if(req.body.data.investor == '0' && req.body.data.city =='0' && req.body.data.company != '0' && req.body.data.funding != "0") {
-    // var query = "select company from transactions where city like '" + req.body.data.city + "%'";
-     var query = "select total_funding from transactions where company like '" + req.body.data.company + "%'";
-     querytype = '5';
-   }
 
 
   connection.query(query,querytype, function(err, rows, fields) {
@@ -81,8 +76,6 @@ function handle_database(req, res) {
       rows.forEach(function(rows) {
         output = output + " | " + rows.company;
       });
-      if(querytype == '5'){
-        var output = req.body.data.company + " The funding for the company is  " + rows[0].total_funding;
     }
     res.json({
       "code": 200,
@@ -101,7 +94,7 @@ function handle_database(req, res) {
       }
     });
     /*
-    //sdfsdfsdffgsjhfj
+    //sdfsdfsdf
     res = {
       "code": 200,
       'headers': {
@@ -121,7 +114,7 @@ function handle_database(req, res) {
   });
 
 }
-//gfghhjvhvj2324232sbdjhfbsdjfbsdhdsdfsdsfdfssdfssdfsdfs
+//gfghhjvhvj2324232sbdjhfbsdjfbsdhdsdfsdsfdfssdfssdfs
 
 /**
  * This is the default 'get' method that gets
