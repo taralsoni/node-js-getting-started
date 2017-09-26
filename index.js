@@ -16,7 +16,7 @@ app.use(parser.urlencoded({
 /**
  * Database connection
  * TODO: remove the db credentials
- * from here later on.fhgfhgfghfgfghhsdjfhsdj
+ * from here later on.fhgfhgfghfgfghhsdjfhsdjsdhfsj
  */
 var connection = mysql.createConnection({
   host: 'us-cdbr-iron-east-05.cleardb.net',
