@@ -75,7 +75,7 @@ function handle_database(req, res) {
     });
     }
     if(querytype == '3'){
-      var output = JSON.stringify(rows[0].overview);
+      var output = JSON.stringify(rows[0].total_funding);
     }
     if(querytype == '4'){
       var output = "The Data Analytics companies in " + req.body.data.city + " :: ";
