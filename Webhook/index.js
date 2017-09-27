@@ -2,7 +2,7 @@
 const https = require('https');
 var request = require('request');
 //hi just understanding push pull
-//new comment line added to redeploy on heroku kjsdfhksjfsdjhsfgjdhjhsfbs
+//new comment line added to redeploy on heroku kjsdfhksjfsdjhsfgjdhjhsfbssdfdfs
 exports.transactionFn = (req, res) => {
   let date = '';
   var city = "0";
