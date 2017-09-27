@@ -46,6 +46,11 @@ function handle_database(req, res) {
     var query = "select company from transactions where description like '%data%' and city like '" + req.body.data.city + "%'";
     querytype = '4';
   }
+  if(req.body.data.investor == '0' && req.body.data.city =='0' && req.body.data.company != '0' && req.body.data.funding != "0") {
+    // var query = "select company from transactions where city like '" + req.body.data.city + "%'";
+     var query = "select total_funding from transactions where company like '" + req.body.data.city + "%'";
+     querytype = '5';
+   }
 
 
   connection.query(query,querytype, function(err, rows, fields) {
@@ -77,12 +82,15 @@ function handle_database(req, res) {
         output = output + " | " + rows.company;
       });
     }
+    if(querytype == '5'){
+      var output = req.body.data.company + "has recieved a funding of " + rows[0].total_funding;
+    }
     res.json({
       "code": 200,
       'headers': {
         "Content-Type": "application/json"
         },
-      "status": "success",
+      "status": "good",
       "body": {
         
         "speech": output,
