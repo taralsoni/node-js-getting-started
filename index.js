@@ -65,7 +65,7 @@ function handle_database(req, res) {
     if(querytype == '1'){
       var output = "Showing list of companies in " + req.body.data.city + " :: "
       rows.forEach(function(rows) {
-        output = output + " ${\n} " + rows.company;
+        output = `${output} +  ${\n}  ${rows.company}`;
       });
     }
     if(querytype == '2'){
@@ -78,7 +78,7 @@ function handle_database(req, res) {
       var output = rows[0].overview;
     }
     if(querytype == '4'){
-      var output = "The Data Analytics companies in " + req.body.data.city + " :: ";
+      var output = `The Data Analytics companies in " ${req.body.data.city} :: `;
       rows.forEach(function(rows) {
         output = output + " | " + rows.company;
       });
