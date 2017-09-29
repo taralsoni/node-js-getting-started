@@ -2,7 +2,7 @@
 const https = require('https');
 var request = require('request');
 //hi just understanding push pull
-//new comment line added to redeploy on heroku kjsdfhksjfsdjhsfgjdhjhsfbssdfdfs
+//new comment line added to redeploy on heroku kjsdfhksjfsdjhsfgjdhjhsfbssdfdfsfgh
 exports.transactionFn = (req, res) => {
   let date = '';
   var city = "0";
@@ -40,6 +40,7 @@ exports.transactionFn = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ 'speech': error, 'displayText': error }));
     console.log(" Error in callback " + error);
+    
   });
 };
 
