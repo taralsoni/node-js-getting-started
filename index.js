@@ -63,7 +63,7 @@ function handle_database(req, res) {
       return;
     }
     if(querytype == '1'){
-      var output = "Showing list of companies in " + req.body.data.city + " :: "
+      var output = "Showing list of companies in " + req.body.data.city + "\n";
       rows.forEach(function(rows) {
         output = output + "," + rows.company;
       });
