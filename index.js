@@ -63,10 +63,12 @@ function handle_database(req, res) {
       return;
     }
     if(querytype == '1'){
-      var output = "Showing list of companies in " + req.body.data.city + "\\n";
+      var output = "Showing list of companies in " + req.body.data.city + "\
+      ... \n";
       rows.forEach(function(rows) {
         output = output + "," + rows.company;
       });
+      output = output.replace(/\\n/g,'\n');
     }
     if(querytype == '2'){
     var output = "Following companies are invested by " + req.body.data.investor + "::";
