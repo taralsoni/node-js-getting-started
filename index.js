@@ -68,7 +68,7 @@ function handle_database(req, res) {
       rows.forEach(function(rows) {
         output = output + os.EOL + rows.company;
       });
-      output = output.replace(/\\n/g, '\\n');
+     //// output = output.replace(/\\n/g, '\\n');
     }
     if(querytype == '2'){
     var output = "Following companies are invested by " + req.body.data.investor + "::";
