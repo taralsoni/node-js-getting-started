@@ -68,10 +68,10 @@ function handle_database(req, res) {
       for (index = 0; index < rows.length; ++index) {
         if (index == 0)
         output = output + rows[index].company;
-        if (index = rows.length - 1)
-        output = output + " and " + rows[index].company;
-        else 
+        else if (index != rows.length - 1)
         output = output + ", " + rows[index].company;
+        else 
+        output = output + "and " + rows[index].company;
       }
       /*rows.forEach(function(rows) {
         output = output + ", " + rows.company;
@@ -84,10 +84,10 @@ function handle_database(req, res) {
     for (index = 0; index < rows.length; ++index) {
       if (index == 0)
       output = output + rows[index].company;
-      if (index = rows.length - 1)
-      output = output + " and " + rows[index].company;
-      else 
+      else if (index != rows.length - 1)
       output = output + ", " + rows[index].company;
+      else 
+      output = output + "and " + rows[index].company;
     }
     }
     if(querytype == '3'){
@@ -99,10 +99,10 @@ function handle_database(req, res) {
       for (index = 0; index < rows.length; ++index) {
         if (index == 0)
         output = output + rows[index].company;
-        if (index = rows.length - 1)
-        output = output + " and " + rows[index].company;
-        else 
+        else if (index != rows.length - 1)
         output = output + ", " + rows[index].company;
+        else 
+        output = output + "and " + rows[index].company;
       }
     }
     if(querytype == '5'){
