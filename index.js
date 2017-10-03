@@ -67,9 +67,9 @@ function handle_database(req, res) {
       var index;
       for (index = 0; index < rows.length; ++index) {
         if (index == 0)
-        output = output + rows[index];
+        output = output + rows[index].company;
         else 
-        output = output + ", " + rows[index];
+        output = output + ", " + rows[index].company;
       }
       /*rows.forEach(function(rows) {
         output = output + ", " + rows.company;
