@@ -71,7 +71,7 @@ function handle_database(req, res) {
         else if (index != rows.length - 1)
         output = output + ", " + rows[index].company;
         else 
-        output = output + "and " + rows[index].company;
+        output = output + " and " + rows[index].company;
       }
       /*rows.forEach(function(rows) {
         output = output + ", " + rows.company;
@@ -87,7 +87,7 @@ function handle_database(req, res) {
       else if (index != rows.length - 1)
       output = output + ", " + rows[index].company;
       else 
-      output = output + "and " + rows[index].company;
+      output = output + " and " + rows[index].company;
     }
     }
     if(querytype == '3'){
@@ -102,7 +102,7 @@ function handle_database(req, res) {
         else if (index != rows.length - 1)
         output = output + ", " + rows[index].company;
         else 
-        output = output + "and " + rows[index].company;
+        output = output + " and " + rows[index].company;
       }
     }
     if(querytype == '5'){
