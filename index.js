@@ -63,11 +63,13 @@ function handle_database(req, res) {
       return;
     }
     if(querytype == '1'){
-      var output = "Showing list of companies in " + req.body.data.city + " ";
+      var output = "Showing list of companies in " + req.body.data.city + ": ";
       var index;
       for (index = 0; index < rows.length; ++index) {
         if (index == 0)
         output = output + rows[index].company;
+        else if (index = rows.length - 1)
+        output = output + " and " + rows[index].company;
         else 
         output = output + ", " + rows[index].company;
       }
@@ -78,18 +80,30 @@ function handle_database(req, res) {
     }
     if(querytype == '2'){
     var output = req.body.data.investor + "has invested in ";
-    rows.forEach(function(rows) {
-      output = output + ", " + rows.company;
-    });
+    var index;
+    for (index = 0; index < rows.length; ++index) {
+      if (index == 0)
+      output = output + rows[index].company;
+      else if (index = rows.length - 1)
+      output = output + " and " + rows[index].company;
+      else 
+      output = output + ", " + rows[index].company;
+    }
     }
     if(querytype == '3'){
       var output = rows[0].overview;
     }
     if(querytype == '4'){
       var output = "The Data Analytics companies in " + req.body.data.city + " :: ";
-      rows.forEach(function(rows) {
-        output = output + ", " + rows.company;
-      });
+      var index;
+      for (index = 0; index < rows.length; ++index) {
+        if (index == 0)
+        output = output + rows[index].company;
+        else if (index = rows.length - 1)
+        output = output + " and " + rows[index].company;
+        else 
+        output = output + ", " + rows[index].company;
+      }
     }
     if(querytype == '5'){
       var output = req.body.data.company + "has recieved a funding of " + rows[0].total_funding;
