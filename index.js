@@ -64,9 +64,16 @@ function handle_database(req, res) {
     }
     if(querytype == '1'){
       var output = "Showing list of companies in " + req.body.data.city + " ";
-      rows.forEach(function(rows) {
+      var index;
+      for (index = 0; index < rows.length; ++index) {
+        if (index == 0)
+        output = output + rows[index];
+        else 
+        output = output + ", " + rows[index];
+      }
+      /*rows.forEach(function(rows) {
         output = output + ", " + rows.company;
-      });
+      });*/
      //// output = output.replace(/\\n/g, '\\n');
     }
     if(querytype == '2'){
