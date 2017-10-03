@@ -68,7 +68,7 @@ function handle_database(req, res) {
       for (index = 0; index < rows.length; ++index) {
         if (index == 0)
         output = output + rows[index].company;
-        else if (index = rows.length - 1)
+        if (index = rows.length - 1)
         output = output + " and " + rows[index].company;
         else 
         output = output + ", " + rows[index].company;
@@ -84,7 +84,7 @@ function handle_database(req, res) {
     for (index = 0; index < rows.length; ++index) {
       if (index == 0)
       output = output + rows[index].company;
-      else if (index = rows.length - 1)
+      if (index = rows.length - 1)
       output = output + " and " + rows[index].company;
       else 
       output = output + ", " + rows[index].company;
@@ -99,7 +99,7 @@ function handle_database(req, res) {
       for (index = 0; index < rows.length; ++index) {
         if (index == 0)
         output = output + rows[index].company;
-        else if (index = rows.length - 1)
+        if (index = rows.length - 1)
         output = output + " and " + rows[index].company;
         else 
         output = output + ", " + rows[index].company;
