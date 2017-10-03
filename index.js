@@ -63,17 +63,16 @@ function handle_database(req, res) {
       return;
     }
     if(querytype == '1'){
-      var output = "Showing list of companies in " + req.body.data.city + "\
-      ... \r\n";
+      var output = "Showing list of companies in " + req.body.data.city + " ";
       rows.forEach(function(rows) {
-        output = output + os.EOL + rows.company;
+        output = output + ", " + rows.company;
       });
      //// output = output.replace(/\\n/g, '\\n');
     }
     if(querytype == '2'){
-    var output = "Following companies are invested by " + req.body.data.investor + "::";
+    var output = req.body.data.investor + "has invested in ";
     rows.forEach(function(rows) {
-      output = output + "," + rows.company;
+      output = output + ", " + rows.company;
     });
     }
     if(querytype == '3'){
@@ -82,7 +81,7 @@ function handle_database(req, res) {
     if(querytype == '4'){
       var output = "The Data Analytics companies in " + req.body.data.city + " :: ";
       rows.forEach(function(rows) {
-        output = output + " | " + rows.company;
+        output = output + ", " + rows.company;
       });
     }
     if(querytype == '5'){
