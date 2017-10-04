@@ -62,6 +62,10 @@ function handle_database(req, res) {
       });
       return;
     }
+    else if (rows == null)
+    {output = 'Sorry no data';}
+    else
+    {
     if(querytype == '1'){
       var output = "Showing list of companies in " + req.body.data.city + ": ";
       var index;
@@ -108,6 +112,7 @@ function handle_database(req, res) {
     if(querytype == '5'){
       var output = req.body.data.company + "has recieved a funding of " + rows[0].total_funding;
     }
+  }
     res.json({
       "code": 200,
       'headers': {
@@ -142,6 +147,7 @@ function handle_database(req, res) {
         
       }
     }; */
+  }
   });
 
 }
