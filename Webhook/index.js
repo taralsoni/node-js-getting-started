@@ -10,7 +10,14 @@ exports.transactionFn = (req, res) => {
   var investor = "0";
   var finflag = "0";
   var funding = "0";
-
+if(req.body.result.parameters['domain'] == "" || req.body.result.parameters['cityName'] == "" || req.body.result.parameters['companyName'] == "" || req.body.result.parameters['investorName'] == "" || req.body.result.parameters['fund'] == ""){
+  var city = "0";
+  var company = "0";
+  var investor = "0";
+  var finflag = "0";
+  var funding = "0";
+}
+else {
   if (req.body.result.parameters['domain']) {
     finflag = req.body.result.parameters['domain'];
   }
@@ -30,7 +37,7 @@ exports.transactionFn = (req, res) => {
   if(req.body.result.parameters['fund']){
     funding = req.body.result.parameters['fund'];
   }
-   
+}
 
   callTransactionApi(city, investor, company, finflag, funding).then((output) => {
     res.setHeader('Content-Type', 'application/json');
