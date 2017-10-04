@@ -32,7 +32,7 @@ function handle_database(req, res) {
 var query = "select city from transactions";
 var querytype = '0';
   }
-  if (req.body.data.investor == '0' && req.body.data.city =='0' && req.body.data.company == '0' && req.body.data.finflag == '0' && req.body.data.funding == '0'){
+  if (req.body.data.investor == '0' && req.body.data.city =='0' && req.body.data.company == '0' && req.body.data.finflag == '0' && req.body.data.funding == '0'){ 
     var query = "select city from transactions";
     var querytype = '0';    
   }
