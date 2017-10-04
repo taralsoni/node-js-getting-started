@@ -28,6 +28,10 @@ var connection = mysql.createConnection({
 
 
 function handle_database(req, res) {
+  if (req.body.data.investor == '' || req.body.data.city =='' || req.body.data.company == '' || req.body.data.finflag == '' || req.body.data.funding == ''){
+var query = "select city from transactions";
+var querytype = '0';
+  }
   //  var query = "select * from test_users where name like '" + req.body.data.city + "%'";
   if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag == '0' && req.body.data.funding == '0') {
     var query = "select company from transactions where city like '" + req.body.data.city + "%'";
@@ -61,6 +65,9 @@ function handle_database(req, res) {
         "status": "Error in connection database"
       });
       return;
+    }
+    if(querytype == '0'){
+      var output = 'error in catching input';
     }
     if(querytype == '1'){
       var output = "Showing list of companies in " + req.body.data.city + ": ";
