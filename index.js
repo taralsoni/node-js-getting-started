@@ -32,6 +32,10 @@ function handle_database(req, res) {
 var query = "select city from transactions";
 var querytype = '0';
   }
+  if (req.body.data.investor == '0' && req.body.data.city =='0' && req.body.data.company == '0' && req.body.data.finflag == '0' && req.body.data.funding == '0'){
+    var query = "select city from transactions";
+    var querytype = '0';    
+  }
   //  var query = "select * from test_users where name like '" + req.body.data.city + "%'";
   if (req.body.data.investor == '0' && req.body.data.city !='0' && req.body.data.company == '0' && req.body.data.finflag == '0' && req.body.data.funding == '0') {
     var query = "select company from transactions where city like '" + req.body.data.city + "%'";
@@ -69,7 +73,7 @@ var querytype = '0';
     if(querytype == '0'){
       var output = 'error in catching input';
     }
-    if(querytype == '1'){
+    if(querytype == '1')  {
       var output = "Showing list of companies in " + req.body.data.city + ": ";
       var index;
       for (index = 0; index < rows.length; ++index) {
