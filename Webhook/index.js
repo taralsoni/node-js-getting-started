@@ -43,7 +43,7 @@ else {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ 'speech': JSON.stringify(output), 'displayText': JSON.stringify(output) }));
   }).catch((error) => {
-    // If there is an error let the user knowdfsfsdfdfssfsdfdssdfsfdfgddfghgfghffsdfssdgdfgddgdf
+    // If there is an error let the user knowdfsfsdfdfssfsdfdssdfsfdfgddfghgfghffsdfssdgdfgddgdfsds
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ 'speech': error, 'displayText': error }));
     console.log(" Error in callback " + error);
