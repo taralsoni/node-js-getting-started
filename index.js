@@ -90,7 +90,7 @@ var querytype = '0';
      //// output = output.replace(/\\n/g, '\\n');
     }
     if(querytype == '2'){
-    var output = req.body.data.investor + "has invested in ";
+    var output = req.body.data.investor + " has invested in ";
     var index;
     for (index = 0; index < rows.length; ++index) {
       if (index == 0)
@@ -105,7 +105,7 @@ var querytype = '0';
       var output = rows[0].overview;
     }
     if(querytype == '4'){
-      var output = "The Data Analytics companies in " + req.body.data.city + " :: ";
+      var output = "The" + req.body.data.finflag + " related companies in " + req.body.data.city + " :: ";
       var index;
       for (index = 0; index < rows.length; ++index) {
         if (index == 0)
@@ -117,7 +117,7 @@ var querytype = '0';
       }
     }
     if(querytype == '5'){
-      var output = req.body.data.company + "has recieved a funding of " + rows[0].total_funding;
+      var output = req.body.data.company + " has recieved a funding of " + rows[0].total_funding;
     }
     res.json({
       "code": 200,
