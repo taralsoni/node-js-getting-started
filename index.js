@@ -105,7 +105,7 @@ var querytype = '0';
       var output = rows[0].overview;
     }
     if(querytype == '4'){
-      var output = "The" + req.body.data.finflag + " related companies in " + req.body.data.city + " :: ";
+      var output = "The " + req.body.data.finflag + " related companies in " + req.body.data.city + " :: ";
       var index;
       for (index = 0; index < rows.length; ++index) {
         if (index == 0)
